@@ -1,0 +1,34 @@
+@media (min-device-width: 960px){
+    body{
+        background:no-repeat url("https://note.youdao.com/yws/api/personal/file/WEB14101b58cfa005bdabc1457d061c1634?method=download&shareKey=d56091594f0f05b5eddce5b4b2ad148d");
+        background-size:cover;/* 会自动按比例调整图片 */
+    }
+}
+
+#nav-header{
+    background-color: #31628c;
+    box-shadow: 0 0 10px black;
+    border: 1px solid #31628c;
+}
+
+#project, #log, #register{
+    color: white;
+}
+
+textarea{
+    resize: vertical;
+}
+
+#version{
+    color: white;
+}
+
+.mypop{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 999;
+}

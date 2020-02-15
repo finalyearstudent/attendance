@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>考勤系统</title>
+    <link rel="icon" href="/static/icon/attendance.ico">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/attendance.css">
+</head>
+<body>
+<div class="alert alert-success mypop" id="psuccess">成功！很好地完成了提交。</div>
+<div class="alert alert-info mypop" id="pinfo">信息！请注意这个信息。</div>
+<div class="alert alert-warning mypop" id="pwarn">警告！请不要提交。</div>
+<div class="alert alert-danger mypop" id="perrror">错误！请进行一些更改。</div>
+<!--导航栏-->
+<nav class="navbar navbar-default" id="nav-header" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" id="project">考勤系统</a>
+        </div>
+        <div class="nav navbar-nav ">
+            <div class="navbar-brand" id="version">v 1.0.0</div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+            <li><a href="#" id="log"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- 打卡环节，左边填写任务，右边填写 -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        今天准备完成的事
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea id="text1" class="form-control" rows="5" placeholder="从此处开始填写..."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        今天实际完成的事
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea id="text2" class="form-control" rows="5" placeholder="从此处开始填写..."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  评价区  -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3">
+            <form class="bs-example bs-example-form" role="form">
+                <div class="input-group">
+                    <span class="input-group-addon">今日任务完成情况</span>
+                    <input id="percentage" readonly type="text" class="form-control" placeholder="点击下拉框进行选择">
+                </div>
+                <br>
+            </form>
+        </div>
+
+        <div class="col-xs-4 col-sm-2 col-lg-1 col-md-3">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">下拉选择
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#" onclick="setPercentageOfTask('极差')">极差(0%)</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="setPercentageOfTask('差')">差(0%-50%)</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="setPercentageOfTask('一般')">一般(50%-80%)</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="setPercentageOfTask('优秀')">优秀(80%以上)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-lg-1 col-md-2">
+            <div class="btn-group">
+                <button id="save" type="button" class="btn btn-default">保存</button>
+            </div>
+        </div>
+    </div>
+    <!--  历史记录图表 TODO  -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <em style="font-size: 34px;">历史记录区域，待开发...</em>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script src="/static/js/attendance.js"></script>
+</body>
+</html>
