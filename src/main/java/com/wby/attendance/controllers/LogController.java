@@ -5,17 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.wby.attendance.constants.SessionConstants;
 import com.wby.attendance.enums.TrueAndFalseEnum;
 import com.wby.attendance.pojos.UserDTO;
-import com.wby.attendance.pojos.json.FailJsonMessage;
-import com.wby.attendance.pojos.json.NormalJsonMessage;
-import com.wby.attendance.pojos.json.SuccessJsonMessage;
 import com.wby.attendance.pojos.util.ValidationReturnObject;
 import com.wby.attendance.serviceimpl.certification.LogValidation;
-import com.wby.attendance.utils.ProjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
 
 /**
  * Copyright ©2020 WangBoyi

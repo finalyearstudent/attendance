@@ -1,15 +1,14 @@
 package com.wby.attendance.configuration;
 
 import com.wby.attendance.Interceptor.LogHandlerIntercepor;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
+ import org.springframework.util.ResourceUtils;
+ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
+ /**
  * Copyright ©2020 WangBoyi
  *
  * @Classname MyWebAppConfiguration
@@ -29,7 +28,7 @@ public class MyWebAppConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(logHandlerIntercepor())
-				.excludePathPatterns("/static/**", "/log/**", "/log.html", "/log/**", "version.html", "/version", "/register", "/register/**");
+				.excludePathPatterns("/static/**", "/log/**", "/log.html", "/log/**", "/version.html", "/version", "/register", "/register/**");
 
 	}
 
