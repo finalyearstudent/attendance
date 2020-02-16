@@ -32,6 +32,15 @@ public class AttendanceController {
 	@Autowired
 	AttendanceService attendanceService;
 
+	/**
+	 * 保存今天的考勤数据
+	 * @param attendanceDO
+	 * @param request
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@ResponseBody
 	@PostMapping("/attendance/makeaattendance")
 	public String makeAAttendance(@RequestBody AttendanceDO attendanceDO, HttpServletRequest request){
@@ -41,6 +50,14 @@ public class AttendanceController {
 		return JSONObject.toJSONString(attendanceService.makeAAttendance(attendanceDO));
 	}
 
+	/**
+	 * 获取今天的考勤数据
+	 * @param request
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@GetMapping("/attendance/data")
 	@ResponseBody
 	public String getTodayAttendanceData(HttpServletRequest request){

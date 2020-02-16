@@ -9,6 +9,7 @@ import com.wby.attendance.pojos.UserDO;
 import com.wby.attendance.pojos.UserDTO;
 import com.wby.attendance.pojos.json.NormalJsonMessage;
 import com.wby.attendance.pojos.json.SuccessJsonMessage;
+import com.wby.attendance.serviceimpl.certification.LogStatusService;
 import com.wby.attendance.serviceimpl.certification.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +37,19 @@ public class RegisterController {
 	@Autowired
 	RegisterService registerService;
 
+	@Autowired
+	LogStatusService logStatusService;
+
 	/**
-	 * 接受注册参数
+	 * 注册账号
 	 * @param userDTO
-	 * @return
-	 */
+	 * @param request
+	 * @param response
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@PostMapping("/newaccount")
 	public String register(@RequestBody UserDTO userDTO, HttpServletRequest request, HttpServletResponse response){
 		UserDO userDO;
@@ -51,15 +60,7 @@ public class RegisterController {
 					, NormalJsonMessageConstants.ACCOUNT_DUPLICATION));
 		}
 
-//		注册成功，设置cookie
-		String account = userDTO.getAccount();
-		HttpSession session = request.getSession();
-		session.setAttribute(SessionConstants.LOGIN_USER, account);
-		session.setMaxInactiveInterval(60 * 15);
-		Cookie cookie  = new Cookie(SessionConstants.LOGIN_USER, account);
-		cookie.setMaxAge(60 * 15);
-		cookie.setPath("/");
-		response.addCookie(cookie);
+		logStatusService.setLoginUserFlag(request, response, userDTO.getAccount());
 
 		return JSONObject.toJSONString(new SuccessJsonMessage());
 	}

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Copyright ©2020 WangBoyi
  *
- * @Classname LogValidation
+ * @Classname LogValidationService
  * @Author WangBoyi
  * @Date 2020-2-14 9:24
  * @Description 对登录的账号进行密码验证
@@ -24,32 +24,22 @@ import javax.servlet.http.HttpSession;
  **/
 @Service
 @RequestScope
-public class LogValidation{
+public class LogValidationService {
 
 	@Autowired
 	UserMapper userMapper;
 
-	/** 用户登录数据传输类*/
-	UserDTO userDTO;
-
 	/**
-	 * 验证前要先设定UserDTO
-	 */
-	public void setUserDTO(UserDTO userDTO){
-		this.userDTO = userDTO;
-	}
+	 * 验证登录
+	 * @param userDTO
+	 * @return com.wby.attendance.pojos.util.ValidationReturnObject
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
+	public ValidationReturnObject validate(UserDTO userDTO) {
 
-	/**
-	 * 进行验证前要先调用setUserDTO方法
-	 *
-	 * @return ValidationReturnObject
-	 */
-	public ValidationReturnObject validate() {
-		if(!hasSetDTO()){
-			return new ValidationReturnObject(TrueAndFalseEnum.FALSE.getCode(), ValidationConstants.FRONT_TASK_MISSING);
-		}
-
-		String account = this.userDTO.getAccount();
+		String account = userDTO.getAccount();
 
 		if(StringUtils.isBlank(account)){
 			return new ValidationReturnObject(TrueAndFalseEnum.FALSE.getCode(), ValidationConstants.USER_IS_BLANK);
@@ -66,14 +56,6 @@ public class LogValidation{
 		}
 
 		return new ValidationReturnObject(TrueAndFalseEnum.FALSE.getCode(), ValidationConstants.ACCOUNT_OR_PASSWORD_ERROR);
-	}
-
-	/**
-	 * 判断是否能进行验证
-	 * @return true 能进行验证
-	 */
-	public boolean hasSetDTO(){
-		return this.userDTO != null ? true : false;
 	}
 
 }

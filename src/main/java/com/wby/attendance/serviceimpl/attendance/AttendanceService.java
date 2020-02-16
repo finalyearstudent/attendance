@@ -32,6 +32,14 @@ public class AttendanceService {
 	@Autowired
 	AttendanceMapper attendanceMapper;
 
+	/**
+	 * 考勤
+	 * @param attendanceDO
+	 * @return com.wby.attendance.pojos.json.NormalJsonMessage
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@Transactional
 	public NormalJsonMessage makeAAttendance(AttendanceDO attendanceDO){
 //		设定日期
@@ -57,21 +65,53 @@ public class AttendanceService {
 		return new NormalJsonMessage(NormalJsonMessageCode.SUCCESS.getCode(), AttendanceConstants.ATTENDANCE_SUCCESS);
 	}
 
+	/**
+	 * 更新今天的考勤数据
+	 * @param attendanceDO
+	 * @return void
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	private void updateTodayAttendance(AttendanceDO attendanceDO){
 		String formatDate = ProjectUtils.getOnedayFormatDateString(attendanceDO.getDate());
 		attendanceMapper.updateAttendance(attendanceDO, formatDate);
 	}
-
+	/**
+	 * 插入今天的考勤数据
+	 * @param attendanceDO
+	 * @return void
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	private void insertTodayAttendance(AttendanceDO attendanceDO){
 		attendanceMapper.insertAttendance(attendanceDO);
 	}
 
+	/**
+	 * 检查今天是否考勤
+	 * @param uid
+	 * @param date
+	 * @return boolean true 已经考勤
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	private boolean hasAttendance(String uid, Date date){
 		String formatDate = ProjectUtils.getOnedayFormatDateString(date);
 		Integer count = attendanceMapper.countAttendanceByUserAndDate(uid, formatDate);
 		return !(count != null && count < 1);
 	}
 
+	/**
+	 * 获取今天的考勤数据
+	 * @param uid
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	public String getTodayAttendanceData(String uid){
 		String formatDate = ProjectUtils.getTodayFormatDateString();
 		if(hasAttendance(uid, new Date())){
@@ -80,8 +120,5 @@ public class AttendanceService {
 		}else{
 			return JSONObject.toJSONString(new NormalJsonMessage(NormalJsonMessageCode.FAIL.getCode(), NormalJsonMessageConstants.TODAY_NOT_SIGN));
 		}
-
-
-
 	}
 }

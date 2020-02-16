@@ -25,6 +25,14 @@ public class MyWebAppConfiguration implements WebMvcConfigurer{
 		return new LogHandlerIntercepor();
 	}
 
+	/**
+	 * 添加拦截器
+	 * @param registry
+	 * @return void
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(logHandlerIntercepor())
@@ -37,6 +45,14 @@ public class MyWebAppConfiguration implements WebMvcConfigurer{
 //	static 目录会被springboot放置在classes目录下，也就是classpath下，
 //	classpath所处的文件夹路径（windows上的路径）与项目根目录的访问路径（域名路径）相映射)
 //	这里是添加了一个新的静态资源访问路径，之前默认的/路径依然可用
+	 /**
+	  * 配置静态资源映射路径
+	  * @param registry
+	  * @return void
+	  * @date 2020-2-16
+	  * @author WangBoyi
+	  * @version 1.0.0
+	  **/
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**")

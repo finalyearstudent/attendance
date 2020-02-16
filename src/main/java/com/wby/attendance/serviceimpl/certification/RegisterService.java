@@ -28,10 +28,13 @@ public class RegisterService {
 	UserMapper userMapper;
 
 	/**
-	 * 进行注册，注册失败进行回滚
+	 * 注册账号
 	 * @param userDTO
-	 * @return UserDO
-	 */
+	 * @return com.wby.attendance.pojos.UserDO
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@Transactional
 	public UserDO register(UserDTO userDTO) throws AccountDuplicationException{
 		//用户名重复，抛出异常
@@ -47,10 +50,13 @@ public class RegisterService {
 	}
 
 	/**
-	 * 验证账户号唯一
+	 * 验证账号是否已存在
 	 * @param account
-	 * @return true 唯一
-	 */
+	 * @return boolean
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	private boolean checkAccountUnique(String account){
 		return userMapper.countAccounts(account) == 0 ? true : false;
 	}

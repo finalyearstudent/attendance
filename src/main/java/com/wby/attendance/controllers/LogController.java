@@ -6,7 +6,8 @@ import com.wby.attendance.constants.SessionConstants;
 import com.wby.attendance.enums.TrueAndFalseEnum;
 import com.wby.attendance.pojos.UserDTO;
 import com.wby.attendance.pojos.util.ValidationReturnObject;
-import com.wby.attendance.serviceimpl.certification.LogValidation;
+import com.wby.attendance.serviceimpl.certification.LogStatusService;
+import com.wby.attendance.serviceimpl.certification.LogValidationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,25 +36,32 @@ import javax.servlet.http.HttpSession;
 public class LogController {
 
 	@Autowired
-	LogValidation logValidation;
+	LogValidationService logValidationService;
 
+	@Autowired
+	LogStatusService logStatusService;
+
+	/**
+	 * 用户登录
+	 * @param account
+	 * @param password
+	 * @param request
+	 * @param response
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.0.0
+	 **/
 	@PostMapping("/user")
 	@ResponseBody
 	public String log(@RequestParam("account")String account, @RequestParam("password")String password, HttpServletRequest request, HttpServletResponse response){
 		UserDTO userDTO = new UserDTO();
 		userDTO.setAccount(account);
 		userDTO.setPassword(password);
-		logValidation.setUserDTO(userDTO);
-		ValidationReturnObject validationReturnObject = logValidation.validate();
+		ValidationReturnObject validationReturnObject = logValidationService.validate(userDTO);
 		if(StringUtils.equals(validationReturnObject.getCode(), TrueAndFalseEnum.TRUE.getCode())){
 //			登录成功，设置session, cookie
-			HttpSession session = request.getSession();
-			session.setAttribute(SessionConstants.LOGIN_USER, account);
-			session.setMaxInactiveInterval(60 * 15);
-			Cookie cookie  = new Cookie(SessionConstants.LOGIN_USER, account);
-			cookie.setMaxAge(60 * 15);
-			cookie.setPath("/");
-			response.addCookie(cookie);
+			logStatusService.setLoginUserFlag(request, response, account);
 		}
 		return JSONObject.toJSONString(validationReturnObject);
 	}
