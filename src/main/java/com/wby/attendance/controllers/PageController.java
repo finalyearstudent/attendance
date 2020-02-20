@@ -20,7 +20,7 @@ public class PageController {
 	 * @return java.lang.String
 	 * @date 2020-2-16
 	 * @author WangBoyi
-	 * @version todo
+	 * @version 1.0.0
 	 **/
 	@RequestMapping("/")
 	public String defaultPage() {
@@ -80,4 +80,8 @@ public class PageController {
 		return "log";
 	}
 
+	@RequestMapping("/personcenter")
+	public String personalCenter(){
+		return "personCenter";
+	}
 }

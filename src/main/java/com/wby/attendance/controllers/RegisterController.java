@@ -60,7 +60,7 @@ public class RegisterController {
 					, NormalJsonMessageConstants.ACCOUNT_DUPLICATION));
 		}
 
-		logStatusService.setLoginUserFlag(request, response, userDTO.getAccount());
+		logStatusService.setLoginUserFlag(request, response, userDTO.getId());
 
 		return JSONObject.toJSONString(new SuccessJsonMessage());
 	}

@@ -1,7 +1,9 @@
 package com.wby.attendance.Interceptor;
 
 import com.wby.attendance.constants.SessionConstants;
+import com.wby.attendance.serviceimpl.certification.LogStatusService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.Cookie;
@@ -19,17 +21,23 @@ import javax.servlet.http.HttpSession;
  * @Version 1.0.0
  **/
 public class LogHandlerIntercepor implements HandlerInterceptor {
+
+	@Autowired
+	LogStatusService logStatusService;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //		检查登录情况，未登录全部打回登录界面
 		HttpSession session = request.getSession();
-		String account = (String) session.getAttribute(SessionConstants.LOGIN_USER);
+		String uid = (String) session.getAttribute(SessionConstants.LOGIN_USER);
 		Cookie[] cookies = request.getCookies();
 
 		if(cookies != null){
 			for(Cookie cookie : cookies){
 				if(StringUtils.equals(cookie.getName(), SessionConstants.LOGIN_USER)
-						&& StringUtils.equals(cookie.getValue(), account)){
+						&& StringUtils.equals(cookie.getValue(), uid)){
+//					重置session时间
+					logStatusService.setLoginUserFlag(request, response, uid);
 					return true;
 				}
 			}

@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录界面</title>
-
     <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="icon" href="/static/icon/attendance.ico">
@@ -35,7 +36,7 @@
 
     <div class="overbox">
         <div class="material-button alt-2">
-            <span class="shape"></span>
+            <span class="shape" id="shape"></span>
         </div>
         <div class="title">注册</div>
         <div class="input">
@@ -59,7 +60,13 @@
             </button>
         </div>
     </div>
+</div>
 
+<div id="mask">
+    <div class="rorate">
+        <div class="bigCircle">
+        </div>
+    </div>
 </div>
 
 <script src="/static/js/jquery.min.js"></script>
@@ -68,3 +75,4 @@
 
 </body>
 </html>
+

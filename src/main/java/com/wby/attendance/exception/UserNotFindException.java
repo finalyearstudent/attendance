@@ -6,8 +6,8 @@ package com.wby.attendance.exception;
  * @Classname UserNotFindException
  * @Author WangBoyi
  * @Date 2020-2-14 10:22
- * @Description TODO
- * @Version TODO
+ * @Description 1.0.0
+ * @Version 1.0.0
  **/
 public class UserNotFindException extends Exception{
 }

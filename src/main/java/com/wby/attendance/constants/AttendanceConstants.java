@@ -18,4 +18,6 @@ public class AttendanceConstants {
 	public static String ATTENDANCE_BAD = "1";
 	public static String ATTENDANCE_NORMAL = "2";
 	public  static String ATTENDANCE_GOOD = "4";
+
+	public static int HISTORY_DAY_MAX = 7;
 }

@@ -61,8 +61,23 @@ public class LogController {
 		ValidationReturnObject validationReturnObject = logValidationService.validate(userDTO);
 		if(StringUtils.equals(validationReturnObject.getCode(), TrueAndFalseEnum.TRUE.getCode())){
 //			登录成功，设置session, cookie
-			logStatusService.setLoginUserFlag(request, response, account);
+			logStatusService.setLoginUserFlag(request, response, userDTO.getId());
 		}
 		return JSONObject.toJSONString(validationReturnObject);
+	}
+
+	/**
+	 * 用户注销
+	 * @param request
+	 * @param response
+	 * @return java.lang.String
+	 * @date 2020-2-16
+	 * @author WangBoyi
+	 * @version 1.1.0
+	 **/
+	@ResponseBody
+	@RequestMapping("/out")
+	public String logOut(HttpServletRequest request, HttpServletResponse response){
+		return JSONObject.toJSONString(logStatusService.logOut(request, response));
 	}
 }

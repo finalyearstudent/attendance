@@ -1,5 +1,5 @@
 $(function() {
-
+   unloding()
    $(".input input").focus(function() {
 
       $(this).parent(".input").each(function() {
@@ -32,6 +32,7 @@ $(function() {
 
    $("#login").click(function(e) {
       that = this
+      loading()
 
       //获取表单数据加密
       const account = md5($("#account").get(0).value)
@@ -57,7 +58,10 @@ $(function() {
          error : function (res) {
             alert("登录失败，请重试！")
          },
-         method : "post"
+         method : "post",
+         complete:function () {
+            unloding()
+         }
       })
 
 
@@ -65,6 +69,7 @@ $(function() {
 
    $("#register").click(function(e) {
       that = this
+      loading()
 
       //获取表单数据加密
       const account = md5($("#regname").get(0).value)
@@ -74,6 +79,8 @@ $(function() {
       // 两次密码不一致
       if(password != cpassword){
          $("#reregpass").focus()
+         alert("两次密码不一致！")
+         unloding()
          return
       }
 
@@ -96,6 +103,9 @@ $(function() {
          },
          error : function (res) {
             alert("注册失败，请重试！")
+         },
+         complete:function(){
+            unloding()
          },
          method : "post"
       })
@@ -189,3 +199,12 @@ $(function() {
    });
 
 });
+
+
+function loading() {
+   $("#mask").css("display", "flex")
+
+}
+function unloding() {
+   $("#mask").css("display", "none")
+}

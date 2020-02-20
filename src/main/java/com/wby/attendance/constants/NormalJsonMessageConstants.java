@@ -15,4 +15,5 @@ public class NormalJsonMessageConstants {
 	public static String SUCCESS = "成功";
 	public static String FAIL = "失败";
 	public static String TODAY_NOT_SIGN = "今天还没有打卡哦！";
+	public static String LOG_OUT_SUCCESS = "注销成功";
 }

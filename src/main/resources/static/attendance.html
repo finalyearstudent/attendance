@@ -7,6 +7,7 @@
     <title>考勤系统</title>
     <link rel="icon" href="/static/icon/attendance.ico">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/components/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/static/css/attendance.css">
 </head>
 <body>
@@ -21,16 +22,33 @@
             <a class="navbar-brand" href="#" id="project">考勤系统</a>
         </div>
         <div class="nav navbar-nav ">
-            <div class="navbar-brand" id="version">v 1.0.1_base</div>
+            <div class="navbar-brand" id="version">v 1.1.0_Alpha</div>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-            <li><a href="#" id="log"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+            <li><a href="#" id="logOut"><span class="glyphicon glyphicon-user"></span>注销</a></li>
+            <!--            <li><a href="#" id="log"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>-->
         </ul>
     </div>
 </nav>
 <!-- 打卡环节，左边填写任务，右边填写 -->
 <div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            <!--日历-->
+            <div class="form-group">
+                <label for="selectDate" class="col-md-2 control-label">选择打卡日期：</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy"
+                     data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="selectDate" value=""><br>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-default">
@@ -105,10 +123,20 @@
             </div>
         </div>
     </div>
-    <!--  历史记录图表 TODO  -->
+
+
+    <!--  打卡历史  -->
     <div class="row">
+        <h1>历史打卡记录</h1>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <em style="font-size: 34px;">历史记录区域，待开发...</em>
+            <div id="chart" style="width: 100%; min-height: 300px;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="mask">
+    <div class="rorate">
+        <div class="bigCircle">
         </div>
     </div>
 </div>
@@ -117,7 +145,12 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script src="/static/js/component/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/js/component/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<script src="/static/js/component/echarts.min.js"></script>
 
 <script src="/static/js/attendance.js"></script>
 </body>

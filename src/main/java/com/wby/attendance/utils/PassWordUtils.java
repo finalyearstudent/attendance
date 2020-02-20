@@ -8,8 +8,8 @@ import org.springframework.util.DigestUtils;
  * @Classname PassWordUtils
  * @Author WangBoyi
  * @Date 2020-2-14 11:10
- * @Description TODO
- * @Version TODO
+ * @Description 密码工具类
+ * @Version 1.0.0
  **/
 public class PassWordUtils {
 	/**

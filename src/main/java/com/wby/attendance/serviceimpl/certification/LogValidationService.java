@@ -52,6 +52,7 @@ public class LogValidationService {
 		}
 
 		if(StringUtils.equals(userDO.getPassword(), userDTO.getPassword())){
+			userDTO.setId(userDO.getId());
 			return new ValidationReturnObject(TrueAndFalseEnum.TRUE.getCode(), ValidationConstants.SUCCESS);
 		}
 
