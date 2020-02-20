@@ -58,10 +58,7 @@ $(function() {
          error : function (res) {
             alert("登录失败，请重试！")
          },
-         method : "post",
-         complete:function () {
-            unloding()
-         }
+         method : "post"
       })
 
 
@@ -103,9 +100,6 @@ $(function() {
          },
          error : function (res) {
             alert("注册失败，请重试！")
-         },
-         complete:function(){
-            unloding()
          },
          method : "post"
       })

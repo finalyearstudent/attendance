@@ -43,9 +43,10 @@ public class LogHandlerIntercepor implements HandlerInterceptor {
 			}
 		}
 
-//		请求转发
-		request.getRequestDispatcher("/log").forward(request,response);
-
+//		重定向
+		response.sendRedirect("/log");
+//		这里的请求转发造成了前端浏览器缓存不重新加载页面的问题
+//		request.getRequestDispatcher("/log").forward(request,response);
 		return false;
 	}
 }
